@@ -1,0 +1,6 @@
+cd backend
+python -m venv venv
+venv\Scripts\activate
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+pip install flask flask-cors
+pip install joblib scikit-learn numpy

@@ -1,0 +1,5 @@
+{
+  "name": "Fake Review System",
+  "description": "An advanced AI-powered platform to detect fake reviews, analyze sentiment, and calculate true product ratings using Gemini 1.5 Pro.",
+  "requestFramePermissions": []
+}
