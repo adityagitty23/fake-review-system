@@ -1,0 +1,250 @@
+[
+  {
+    "auditId": "dc267bee-875c-419f-b3c3-d131fd812c24",
+    "mode": "ai",
+    "timestamp": "2026-01-22T19:44:31.028251",
+    "reviews": [
+      {
+        "id": "oe6ibmd5wy5nf88ipe1vd",
+        "text": "The OnePlus 15R feels really smooth and great to use. Looks great went with mint breeze. As a gamer, the performance stays solid even over long sessions, and it doesn\u2019t heat up much. It runs heavy games like Genshin Impact, Wuthering Waves, Where Winds Meet, and Zenless Zone Zero quite well without major frame drops. Battery life is awesome and holds up nicely during gaming too. The camera is okay not the best, but decent enough for everyday use. Sound quality is also fine, loud and clear enough for gaming and videos. In the box, you get an adapter and a really good quality case, which is a nice bonus, and it even comes with a pre applied screen guard. Overall, it\u2019s a great phone, especially for smooth performance and gaming.",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      },
+      {
+        "id": "w14nubn3lppb8do72qsils",
+        "text": "The smartphone market in 2026 is no longer about just raw megapixels or clock speeds; it\u2019s about how seamlessly a device integrates into your life through intelligence. The Nova Ultra 7 enters the fray not just as a piece of hardware, but as a dedicated AI companion. After two weeks of heavy use, here is our deep dive.",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      },
+      {
+        "id": "85ruotqsbarmjkvyck4c6",
+        "text": "The move to a 6,500mAh Silicon-Carbon battery is a game changer. Despite the slim profile, the Ultra 7 easily lasted two full days on a single charge.\n\nCharging: 120W wired charging gets you from 0 to 100% in just 19 minutes.",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      }
+    ],
+    "results": [
+      {
+        "reviewId": "oe6ibmd5wy5nf88ipe1vd",
+        "label": "Genuine",
+        "confidenceScore": 85,
+        "sentiment": "Positive",
+        "reason": "The review includes specific usage details (gaming performance, battery life during gaming, camera quality, sound quality, and included accessories), mentions particular games played, and provides balanced opinions (camera is just 'okay')."
+      },
+      {
+        "reviewId": "w14nubn3lppb8do72qsils",
+        "label": "Unknown",
+        "confidenceScore": 0,
+        "sentiment": "Neutral",
+        "reason": "500 Server Error: Internal Server Error for url: https://models.github.ai/inference/chat/completions"
+      },
+      {
+        "reviewId": "85ruotqsbarmjkvyck4c6",
+        "label": "Unknown",
+        "confidenceScore": 0,
+        "sentiment": "Neutral",
+        "reason": "500 Server Error: Internal Server Error for url: https://models.github.ai/inference/chat/completions"
+      }
+    ],
+    "trueRating": 5.0
+  },
+  {
+    "auditId": "2d9ebf85-8070-43e1-82e3-75527f0414c0",
+    "mode": "ai",
+    "timestamp": "2026-01-22T19:42:40.332198",
+    "reviews": [
+      {
+        "id": "oe6ibmd5wy5nf88ipe1vd",
+        "text": "The OnePlus 15R feels really smooth and great to use. Looks great went with mint breeze. As a gamer, the performance stays solid even over long sessions, and it doesn\u2019t heat up much. It runs heavy games like Genshin Impact, Wuthering Waves, Where Winds Meet, and Zenless Zone Zero quite well without major frame drops. Battery life is awesome and holds up nicely during gaming too. The camera is okay not the best, but decent enough for everyday use. Sound quality is also fine, loud and clear enough for gaming and videos. In the box, you get an adapter and a really good quality case, which is a nice bonus, and it even comes with a pre applied screen guard. Overall, it\u2019s a great phone, especially for smooth performance and gaming.",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      },
+      {
+        "id": "w14nubn3lppb8do72qsils",
+        "text": "The smartphone market in 2026 is no longer about just raw megapixels or clock speeds; it\u2019s about how seamlessly a device integrates into your life through intelligence. The Nova Ultra 7 enters the fray not just as a piece of hardware, but as a dedicated AI companion. After two weeks of heavy use, here is our deep dive.",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      }
+    ],
+    "results": [
+      {
+        "reviewId": "oe6ibmd5wy5nf88ipe1vd",
+        "label": "Genuine",
+        "confidenceScore": 90,
+        "sentiment": "Positive",
+        "reason": "The review provides specific usage details such as gaming performance with named games, mentions of battery life during gaming, camera quality, sound quality, and included accessories. It also notes a minor downside (camera is just okay), indicating a balanced opinion."
+      },
+      {
+        "reviewId": "w14nubn3lppb8do72qsils",
+        "label": "Fake",
+        "confidenceScore": 90,
+        "sentiment": "Neutral",
+        "reason": "The review is vague and promotional, focusing on broad trends and marketing language without providing specific usage details or balanced opinions about the Nova Ultra 7."
+      }
+    ],
+    "trueRating": 5.0
+  },
+  {
+    "auditId": "8859ab6f-cb08-44f7-a516-3347d824da35",
+    "mode": "ai",
+    "timestamp": "2026-01-22T19:41:44.896967",
+    "reviews": [
+      {
+        "id": "oe6ibmd5wy5nf88ipe1vd",
+        "text": "The OnePlus 15R feels really smooth and great to use. Looks great went with mint breeze. As a gamer, the performance stays solid even over long sessions, and it doesn\u2019t heat up much. It runs heavy games like Genshin Impact, Wuthering Waves, Where Winds Meet, and Zenless Zone Zero quite well without major frame drops. Battery life is awesome and holds up nicely during gaming too. The camera is okay not the best, but decent enough for everyday use. Sound quality is also fine, loud and clear enough for gaming and videos. In the box, you get an adapter and a really good quality case, which is a nice bonus, and it even comes with a pre applied screen guard. Overall, it\u2019s a great phone, especially for smooth performance and gaming.",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      }
+    ],
+    "results": [
+      {
+        "reviewId": "oe6ibmd5wy5nf88ipe1vd",
+        "label": "Genuine",
+        "confidenceScore": 90,
+        "sentiment": "Positive",
+        "reason": "The review provides specific usage details, mentions particular games played, discusses battery and camera performance, and lists included accessories. It also gives a balanced opinion by noting the camera is 'okay, not the best.'"
+      }
+    ],
+    "trueRating": 5.0
+  },
+  {
+    "auditId": "b8b47509-c264-4a0b-a5d2-9477edf4e102",
+    "mode": "ai",
+    "timestamp": "2026-01-22T19:40:35.746260",
+    "reviews": [
+      {
+        "id": "dei68bszoxpsrwo6rl0rh",
+        "text": "GOOD PRODUCT",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      },
+      {
+        "id": "mu0g5ffjwzrhogoxyza7qp",
+        "text": "The OnePlus 15R feels really smooth and great to use. Looks great went with mint breeze. As a gamer, the performance stays solid even over long sessions, and it doesn\u2019t heat up much. It runs heavy games like Genshin Impact, Wuthering Waves, Where Winds Meet, and Zenless Zone Zero quite well without major frame drops. Battery life is awesome and holds up nicely during gaming too. The camera is okay not the best, but decent enough for everyday use. Sound quality is also fine, loud and clear enough for gaming and videos. In the box, you get an adapter and a really good quality case, which is a nice bonus, and it even comes with a pre applied screen guard. Overall, it\u2019s a great phone, especially for smooth performance and gaming.",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      }
+    ],
+    "results": [
+      {
+        "reviewId": "dei68bszoxpsrwo6rl0rh",
+        "label": "Fake",
+        "confidenceScore": 98,
+        "sentiment": "Positive",
+        "reason": "The review is extremely generic and lacks any specific details about the product or the user's experience."
+      },
+      {
+        "reviewId": "mu0g5ffjwzrhogoxyza7qp",
+        "label": "Genuine",
+        "confidenceScore": 90,
+        "sentiment": "Positive",
+        "reason": "The review includes specific usage details such as gaming performance with named games, mentions of battery life during gaming, camera quality, sound quality, and details about included accessories. It also provides a balanced opinion by noting the camera is 'okay' rather than excellent."
+      }
+    ],
+    "trueRating": 5.0
+  },
+  {
+    "auditId": "f09111b7-e437-492b-85e9-6c5a98ea75d2",
+    "mode": "ai",
+    "timestamp": "2026-01-22T19:38:54.669343",
+    "reviews": [
+      {
+        "id": "dei68bszoxpsrwo6rl0rh",
+        "text": "GOOD PRODUCT",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      }
+    ],
+    "results": [
+      {
+        "reviewId": "dei68bszoxpsrwo6rl0rh",
+        "label": "Fake",
+        "confidenceScore": 98,
+        "sentiment": "Positive",
+        "reason": "The review is extremely generic and lacks any specific details about usage or experience."
+      }
+    ],
+    "trueRating": 5.0
+  },
+  {
+    "auditId": "0e07ce53-a924-44a3-a1c4-1731b69c7632",
+    "mode": "ai",
+    "timestamp": "2026-01-22T19:36:26.005251",
+    "reviews": [
+      {
+        "id": "dei68bszoxpsrwo6rl0rh",
+        "text": "GOOD PRODUCT",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      }
+    ],
+    "results": [
+      {
+        "reviewId": "dei68bszoxpsrwo6rl0rh",
+        "label": "Fake",
+        "confidenceScore": 98,
+        "sentiment": "Positive",
+        "reason": "The review is extremely generic and lacks any specific details about the product or personal experience."
+      }
+    ],
+    "trueRating": 5.0
+  },
+  {
+    "auditId": "69c6bef0-5dd8-4acd-b35d-10b8855286d1",
+    "mode": "ai",
+    "timestamp": "2026-01-22T19:32:07.575825",
+    "reviews": [
+      {
+        "id": "dmki3bujiaqdcg3huvj94o",
+        "text": "good product",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      }
+    ],
+    "results": [
+      {
+        "reviewId": "dmki3bujiaqdcg3huvj94o",
+        "label": "Fake",
+        "confidenceScore": 98,
+        "sentiment": "Positive",
+        "reason": "The review is extremely generic and lacks any specific details or real usage experience."
+      }
+    ],
+    "trueRating": 5.0
+  },
+  {
+    "auditId": "6fb2f3f4-aa1b-417d-aff6-692a7401f2ed",
+    "mode": "local",
+    "timestamp": "2026-01-22T19:27:37.223529",
+    "reviews": [
+      {
+        "id": "dmki3bujiaqdcg3huvj94o",
+        "text": "good product",
+        "rating": 5,
+        "date": "2026-01-22",
+        "source": "Manual Entry"
+      }
+    ],
+    "results": [
+      {
+        "reviewId": "dmki3bujiaqdcg3huvj94o",
+        "label": "Fake",
+        "confidenceScore": 79.17,
+        "sentiment": "Neutral",
+        "reason": "Local ML decision"
+      }
+    ],
+    "trueRating": 5.0
+  }
+]

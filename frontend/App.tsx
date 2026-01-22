@@ -107,9 +107,13 @@ const App: React.FC = () => {
         // Save history
         if (user) {
           const historyItem: AnalysisHistoryItem = {
-            id: Math.random().toString(36).substring(7),
+            id: uuidv4(),
             date: new Date().toISOString(),
             projectName: reviews[0]?.source || "Manual Entry Batch",
+
+            // ✅ REVIEW SHIELD / LOCAL FIX
+            engine: analysisMode === 'ai' ? 'REVIEW SHIELD' : 'LOCAL',
+
             reviewCount: reviews.length,
             fakeCount,
             trustScore,
@@ -279,7 +283,7 @@ const App: React.FC = () => {
                               >
                                 {analysisMode === 'local'
                                   ? 'Local ML Models (TF-IDF + BERT)'
-                                  : 'AI Model (GitHub Hosted)'}
+                                  : 'REVIEW SHIELD'}
                               </span>
 
                               {/* Toggle Button */}

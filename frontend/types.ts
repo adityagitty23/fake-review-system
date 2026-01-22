@@ -1,4 +1,5 @@
-// Analysis status for UI state
+// ---------------- ANALYSIS STATUS ----------------
+
 export enum AnalysisStatus {
   Idle = 'IDLE',
   Analyzing = 'ANALYZING',
@@ -6,24 +7,31 @@ export enum AnalysisStatus {
   Error = 'ERROR',
 }
 
-// Logged-in user
+// ---------------- USER ----------------
+
 export interface User {
   email: string;
   name: string;
 }
 
-// Saved audit history item
+// ---------------- HISTORY ITEM ----------------
+
 export interface AnalysisHistoryItem {
   id: string;
   date: string;
   projectName: string;
+
+  // ✅ REQUIRED (FIX)
+  engine: 'GEMINI' | 'LOCAL';
+
   reviewCount: number;
   fakeCount: number;
   trustScore: number;
   summary: BulkAnalysisSummary;
 }
 
-// Individual review input
+// ---------------- REVIEW INPUT ----------------
+
 export interface ReviewData {
   id: string;
   text: string;
@@ -33,7 +41,8 @@ export interface ReviewData {
   source?: string;
 }
 
-// Model prediction result
+// ---------------- MODEL RESULT ----------------
+
 export interface AnalysisResult {
   reviewId: string;
   label: 'Genuine' | 'Fake';
@@ -43,7 +52,8 @@ export interface AnalysisResult {
   sentimentExplanation?: string;
 }
 
-// Aggregated analysis statistics
+// ---------------- SUMMARY ----------------
+
 export interface BulkAnalysisSummary {
   totalReviews: number;
   fakeCount: number;
@@ -54,14 +64,16 @@ export interface BulkAnalysisSummary {
   ratingExplanation: string;
 }
 
-// Final audit report
+// ---------------- REPORT ----------------
+
 export interface ReportData {
   summary: string;
   keyPatterns: string[];
   recommendations: string[];
 }
 
-// Backend response for analysis
+// ---------------- BACKEND RESPONSE ----------------
+
 export interface AnalyzeResponse {
   results: AnalysisResult[];
   trueRating: number;
