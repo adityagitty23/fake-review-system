@@ -7,9 +7,12 @@ import Auth from './components/Auth';
 import HistoryView from './components/HistoryView';
 import ExtensionView from './components/ExtensionView';
 import { ReviewData, AnalysisResult, AnalysisStatus, BulkAnalysisSummary, ReportData, User, AnalysisHistoryItem } from './types';
-import { analyzeReviewsBatch, calculateTrueRating, generateAuditReport } from './services/reviewService';
+import { analyzeReviewsBatch, generateAuditReport } from './services/reviewService';
 import { getCurrentUser, signOut, saveHistory, getHistory } from './services/storageService';
 import { v4 as uuidv4 } from 'uuid';
+
+type AnalysisMode = 'local' | 'ai';
+
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -18,6 +21,7 @@ const App: React.FC = () => {
   const [status, setStatus] = useState<AnalysisStatus>(AnalysisStatus.Idle);
   const [activeTab, setActiveTab] = useState<'input' | 'dashboard' | 'report' | 'history' | 'extension'>('input');
   const [summary, setSummary] = useState<BulkAnalysisSummary | null>(null);
+  const [analysisMode, setAnalysisMode] = useState<AnalysisMode>('local');
   const [report, setReport] = useState<ReportData | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [history, setHistory] = useState<AnalysisHistoryItem[]>([]);
@@ -62,73 +66,82 @@ const App: React.FC = () => {
       setErrorMsg(null);
   }
 
-  const runAnalysis = async () => {
-    if (reviews.length === 0) return;
+    const runAnalysis = async () => {
+      if (reviews.length === 0) return;
 
-    setStatus(AnalysisStatus.Analyzing);
-    setErrorMsg(null);
+      setStatus(AnalysisStatus.Analyzing);
+      setErrorMsg(null);
 
-    try {
-      // 1. Analyze Reviews
-      const batchResults = await analyzeReviewsBatch(reviews);
-      setResults(batchResults);
+      try {
+        // ✅ API returns OBJECT now
+        const response = await analyzeReviewsBatch(reviews, analysisMode);
 
-      // 2. Calculate Stats
-      const fakeCount = batchResults.filter(r => r.label === 'Fake').length;
-      const genuineCount = batchResults.filter(r => r.label === 'Genuine').length;
-      const trustScore = Math.round((genuineCount / reviews.length) * 100);
-      const originalAvg = reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length;
+        const batchResults = response.results;
+        const trueRating = response.trueRating;
+        const ratingExplanation = response.ratingExplanation;
 
-      // 3. Get True Rating Explanation
-      const ratingData = await calculateTrueRating(reviews, batchResults);
+        setResults(batchResults);
 
-      const newSummary: BulkAnalysisSummary = {
-        totalReviews: reviews.length,
-        fakeCount,
-        genuineCount,
-        overallTrustScore: trustScore,
-        originalAvgRating: originalAvg,
-        trueAvgRating: ratingData.trueRating,
-        ratingExplanation: ratingData.explanation
-      };
-      setSummary(newSummary);
+        const fakeCount = batchResults.filter(r => r.label === "Fake").length;
+        const genuineCount = batchResults.filter(r => r.label === "Genuine").length;
 
-      // 4. Save to History
-      if (user) {
-        const historyItem: AnalysisHistoryItem = {
-          id: Math.random().toString(36).substring(7),
-          date: new Date().toISOString(),
-          projectName: reviews[0].source || "Manual Entry Batch",
-          reviewCount: reviews.length,
+        const originalAvg =
+          reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+
+        const trustScore = Math.round(
+          (genuineCount / reviews.length) * 100
+        );
+
+        const newSummary: BulkAnalysisSummary = {
+          totalReviews: reviews.length,
           fakeCount,
-          trustScore,
-          summary: newSummary
+          genuineCount,
+          overallTrustScore: trustScore,
+          originalAvgRating: originalAvg,
+          trueAvgRating: trueRating,
+          ratingExplanation
         };
-        saveHistory(user.email, historyItem);
-        loadHistory(user.email); // Refresh UI
+
+        setSummary(newSummary);
+
+        // Save history
+        if (user) {
+          const historyItem: AnalysisHistoryItem = {
+            id: Math.random().toString(36).substring(7),
+            date: new Date().toISOString(),
+            projectName: reviews[0]?.source || "Manual Entry Batch",
+            reviewCount: reviews.length,
+            fakeCount,
+            trustScore,
+            summary: newSummary
+          };
+
+          saveHistory(user.email, historyItem);
+          loadHistory(user.email);
+        }
+
+        // Generate report
+        const sampleFakes = batchResults
+          .filter(r => r.label === "Fake")
+          .slice(0, 3)
+          .map(r => {
+            const originalText = reviews.find(rv => rv.id === r.reviewId)?.text || "";
+            return originalText;
+          });
+
+        const reportData = await generateAuditReport(newSummary, sampleFakes);
+        setReport(reportData);
+
+        setStatus(AnalysisStatus.Complete);
+        setActiveTab("dashboard");
+
+      } catch (error: any) {
+        console.error(error);
+        setStatus(AnalysisStatus.Error);
+        setErrorMsg(error.message || "An unexpected error occurred");
       }
+    };
 
-      // 5. Generate Report Content
-      const sampleFakes = batchResults
-        .filter(r => r.label === 'Fake')
-        .slice(0, 3)
-        .map(r => {
-             const originalText = reviews.find(rev => rev.id === r.reviewId)?.text || "";
-             return originalText;
-        });
-      
-      const reportData = await generateAuditReport(newSummary, sampleFakes);
-      setReport(reportData);
-
-      setStatus(AnalysisStatus.Complete);
-      setActiveTab('dashboard');
-    } catch (error: any) {
-      console.error(error);
-      setStatus(AnalysisStatus.Error);
-      setErrorMsg(error.message || "An unexpected error occurred");
-      
-    }
-  };
 
   if (!user) {
     return <Auth onLogin={handleLogin} />;
@@ -251,18 +264,39 @@ const App: React.FC = () => {
                         {activeTab === 'history' && 'Past Analysis History'}
                         {activeTab === 'extension' && 'Extension Setup'}
                     </h2>
-                    <p className="text-slate-400 text-sm mt-1 flex items-center gap-2">
-                        {status === AnalysisStatus.Analyzing ? (
-                             'Processing data...'
-                        ) : (
-                             <>
-                              Powered by <span className="font-semibold text-green-400">
-                                Local ML Models (TF-IDF + BERT)
+                        <p className="text-slate-400 text-sm mt-1 flex items-center gap-3">
+                          {status === AnalysisStatus.Analyzing ? (
+                            'Processing data...'
+                          ) : (
+                            <>
+                              Powered by
+                              <span
+                                className={`font-semibold ${
+                                  analysisMode === 'local'
+                                    ? 'text-green-400'
+                                    : 'text-blue-400'
+                                }`}
+                              >
+                                {analysisMode === 'local'
+                                  ? 'Local ML Models (TF-IDF + BERT)'
+                                  : 'AI Model (GitHub Hosted)'}
                               </span>
 
-                             </>
-                        )}
-                    </p>
+                              {/* Toggle Button */}
+                              <button
+                                onClick={() =>
+                                  setAnalysisMode(prev => (prev === 'local' ? 'ai' : 'local'))
+                                }
+                                disabled={status === AnalysisStatus.Analyzing}
+                                className="ml-2 px-3 py-1 rounded-full text-xs font-medium border border-slate-600 
+                                          hover:bg-slate-800 transition disabled:opacity-50"
+                              >
+                                Switch to {analysisMode === 'local' ? 'AI' : 'Local'}
+                              </button>
+                            </>
+                          )}
+                        </p>
+
                 </div>
                 
                 {activeTab === 'input' && reviews.length > 0 && (

@@ -60,3 +60,10 @@ export interface ReportData {
   keyPatterns: string[];
   recommendations: string[];
 }
+
+// Backend response for analysis
+export interface AnalyzeResponse {
+  results: AnalysisResult[];
+  trueRating: number;
+  ratingExplanation: string;
+}
